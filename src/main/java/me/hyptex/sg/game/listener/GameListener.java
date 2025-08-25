@@ -1,6 +1,5 @@
 package me.hyptex.sg.game.listener;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import me.hyptex.sg.SG;
 import me.hyptex.sg.game.Phase;
