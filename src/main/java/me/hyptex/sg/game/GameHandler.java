@@ -25,16 +25,16 @@ import java.util.concurrent.ConcurrentMap;
 @Getter
 public class GameHandler {
 
-    public BorderManager borderManager;
-    public SpawnManager spawnManager;
+    public final BorderManager borderManager;
+    public final SpawnManager spawnManager;
     private final SG plugin;
     private final LobbyScheduler lobbyScheduler;
-    public LootManager lootManager;
+    public final LootManager lootManager;
     public ConcurrentMap<UUID, Profile> profiles;
-    public ScoreboardTask scoreboardTask;
+    public final ScoreboardTask scoreboardTask;
     @Setter
     public Phase phase = Phase.IDLING;
-    public WinnerTask winnerTask;
+    public final WinnerTask winnerTask;
 
 
     public GameHandler(SG plugin) {

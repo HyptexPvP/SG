@@ -11,8 +11,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class ScoreboardTask extends BukkitRunnable {
 
-    public SG plugin;
     public final ConfigFile scoreboardConfig;
+    public SG plugin;
 
     public ScoreboardTask(SG plugin) {
         this.plugin = plugin;
@@ -32,7 +32,7 @@ public class ScoreboardTask extends BukkitRunnable {
 
             board.updateTitle(CC.translate(scoreboardConfig.getString("title")));
 
-            if(plugin.getGameHandler().getPhase() == Phase.IDLING) {
+            if (plugin.getGameHandler().getPhase() == Phase.IDLING) {
                 board.updateLines(
                         scoreboardConfig.getStringList("lobby")
                                 .stream()
@@ -44,7 +44,7 @@ public class ScoreboardTask extends BukkitRunnable {
                 );
                 continue;
             }
-            if(plugin.getGameHandler().getPhase() == Phase.STARTING) {
+            if (plugin.getGameHandler().getPhase() == Phase.STARTING) {
                 board.updateLines(
                         scoreboardConfig.getStringList("counting")
                                 .stream()
@@ -58,7 +58,7 @@ public class ScoreboardTask extends BukkitRunnable {
                 continue;
             }
 
-            if(plugin.getGameHandler().getPhase() == Phase.DONE) {
+            if (plugin.getGameHandler().getPhase() == Phase.DONE) {
                 board.updateLines(
                         scoreboardConfig.getStringList("ending")
                                 .stream()

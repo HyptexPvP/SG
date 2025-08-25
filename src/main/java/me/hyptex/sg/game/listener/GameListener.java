@@ -1,6 +1,7 @@
 package me.hyptex.sg.game.listener;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import me.hyptex.sg.SG;
 import me.hyptex.sg.game.Phase;
 import me.hyptex.sg.game.Profile;
@@ -23,10 +24,10 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.projectiles.ProjectileSource;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class GameListener implements Listener {
 
-    public final SG plugin;
+    private final SG plugin;
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
@@ -80,6 +81,7 @@ public class GameListener implements Listener {
                     }
                 }
             }
+
             if (killer != null && killer != player) {
                 Profile killerProfile = plugin.getGameHandler().getProfiles().get(killer.getUniqueId());
 

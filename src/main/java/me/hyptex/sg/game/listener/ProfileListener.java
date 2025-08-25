@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 @RequiredArgsConstructor
 public class ProfileListener implements Listener {
 
-    public final SG plugin;
+    private final SG plugin;
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {

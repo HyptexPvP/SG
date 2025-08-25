@@ -4,11 +4,11 @@ import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+
 @UtilityClass
 public class LocationSerializer {
 
     public static Location read(String source) {
-
         if (source == null || source.equalsIgnoreCase("null")) {
             return null;
         }

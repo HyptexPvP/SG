@@ -2,12 +2,14 @@ package me.hyptex.sg.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.CommandPermission;
 import co.aikar.commands.annotation.Subcommand;
 import lombok.RequiredArgsConstructor;
 import me.hyptex.sg.SG;
 import org.bukkit.entity.Player;
 
 @CommandAlias("spawnpoints|sps")
+@CommandPermission("sg.admin")
 @RequiredArgsConstructor
 public class SpawnPointsCommand extends BaseCommand {
 

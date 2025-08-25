@@ -6,19 +6,16 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class LootManager {
 
-    public HashMap<Location, Inventory> chestLoot;
     public final SG plugin;
     private final int maxItemsPerChest;
     private final List<Material> possibleItems;
     private final Random random;
+    public HashMap<Location, Inventory> chestLoot;
 
     public LootManager(SG plugin) {
         this.chestLoot = new HashMap<>();
@@ -37,14 +34,17 @@ public class LootManager {
             inventory = plugin.getServer().createInventory(null, size, "Loot");
 
             List<Integer> slots = new ArrayList<>(size);
+
             for (int i = 0; i < size; i++) slots.add(i);
-            java.util.Collections.shuffle(slots, random);
+
+            Collections.shuffle(slots, random);
 
             int itemsToAdd = Math.min(maxItemsPerChest, possibleItems.size());
             for (int i = 0; i < itemsToAdd; i++) {
                 Material mat = possibleItems.get(random.nextInt(possibleItems.size()));
                 int amount = random.nextInt(1, 4);
                 ItemStack itemStack = new ItemStack(mat, Math.min(mat.getMaxStackSize(), amount));
+
                 inventory.setItem(slots.get(i), itemStack);
             }
 

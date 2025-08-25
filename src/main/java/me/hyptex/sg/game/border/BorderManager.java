@@ -3,12 +3,12 @@ package me.hyptex.sg.game.border;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import me.hyptex.sg.SG;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
 
-@RequiredArgsConstructor @Getter
+@RequiredArgsConstructor
+@Getter
 public class BorderManager {
 
     private final SG plugin;
@@ -26,5 +26,11 @@ public class BorderManager {
         wb.setWarningTime(5);
 
         wb.setSize(radius * 2.0);
+    }
+
+    public void deleteBorder() {
+        if (this.border != null) {
+            this.border.reset();
+        }
     }
 }

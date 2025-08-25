@@ -32,7 +32,9 @@ public class ConfigFile {
         config.options().copyDefaults(true);
     }
 
-    public void set(String path, Object value) { config.set(path, value); }
+    public void set(String path, Object value) {
+        config.set(path, value);
+    }
 
     public ConfigurationSection getConfigurationSection(String path) {
         return config.getConfigurationSection(path);

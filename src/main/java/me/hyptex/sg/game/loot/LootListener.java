@@ -3,6 +3,7 @@ package me.hyptex.sg.game.loot;
 import lombok.RequiredArgsConstructor;
 import me.hyptex.sg.SG;
 import me.hyptex.sg.game.Phase;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
@@ -16,12 +17,16 @@ import org.bukkit.inventory.Inventory;
 @RequiredArgsConstructor
 public class LootListener implements Listener {
 
-    public final SG plugin;
+    private final SG plugin;
 
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
-        if (plugin.getGameHandler().getPhase() != Phase.GAME || event.getPlayer().getGameMode() != org.bukkit.GameMode.SURVIVAL) {
+        if (plugin.getGameHandler().getPhase() != Phase.GAME) {
+            return;
+        }
+
+        if (event.getPlayer().getGameMode() == GameMode.SPECTATOR) {
             event.setCancelled(true);
             return;
         }
