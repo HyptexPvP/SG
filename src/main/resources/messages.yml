@@ -1,0 +1,10 @@
+death:
+  player-killed: "&a%player% &dwas killed by &c%killer%&7."
+  player-died: "&a%player% died."
+  death-title: "&c&lYou Died!"
+  death-subtitle: "&aYou are now a spectator."
+
+winner:
+    winner-message: "&6&l%player% &ehas won the game!"
+    winner-title: "&6&lYou Won!"
+    winner-subtitle: "&aCongratulations!"

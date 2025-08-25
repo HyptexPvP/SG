@@ -1,0 +1,9 @@
+game:
+  auto-start: true # For testing etc... do /forcestart
+  radius: 100
+  spawn-points:
+    -
+  items-per-chest: 6
+
+data:
+  map: "Default"
