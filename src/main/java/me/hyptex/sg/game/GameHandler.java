@@ -8,9 +8,12 @@ import me.hyptex.sg.game.listener.GameListener;
 import me.hyptex.sg.game.listener.ProfileListener;
 import me.hyptex.sg.game.loot.LootManager;
 import me.hyptex.sg.game.spawn.SpawnManager;
+import me.hyptex.sg.game.task.DeathMatchScheduler;
+import me.hyptex.sg.game.task.LobbyScheduler;
 import me.hyptex.sg.game.task.WinnerTask;
 import me.hyptex.sg.scoreboard.ScoreboardTask;
 import me.hyptex.sg.util.CC;
+import me.hyptex.sg.util.LocationSerializer;
 import me.hyptex.sg.util.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -32,6 +35,7 @@ public class GameHandler {
     public final LootManager lootManager;
     public ConcurrentMap<UUID, Profile> profiles;
     public final ScoreboardTask scoreboardTask;
+    private DeathMatchScheduler deathMatchScheduler;
     @Setter
     public Phase phase = Phase.IDLING;
     public final WinnerTask winnerTask;
@@ -52,15 +56,20 @@ public class GameHandler {
             this.lobbyScheduler.start();
         }
         this.profiles = new ConcurrentHashMap<>();
+
+        if(plugin.getSettingsFile().getString("border.center") != null) {
+            this.borderManager.startBorder(
+                    LocationSerializer.read(plugin.getSettingsFile().getString("border.center")),
+                    plugin.getSettingsFile().getInt("border.radius", 100)
+            );
+        }
+
     }
 
     public void start() {
         this.lobbyScheduler.stop();
         this.phase = Phase.GAME;
-
-        //plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
-        //  if (phase == Phase.GAME) startDeathmatch();
-        //   }, 10 * 60 * 20L);
+        this.deathMatchScheduler = new DeathMatchScheduler(plugin);
     }
 
     public void end() {
@@ -107,4 +116,20 @@ public class GameHandler {
     }
 
 
+    public void startDeathMatch() {
+        borderManager.setDeathMatchBorder();
+        List<Player> players = profiles.values().stream().filter(Profile::isAlive).map(profile -> Bukkit.getPlayer(profile.getUuid())).toList();
+
+        for (int i = 0; i < players.size(); i++) {
+            Player player = players.get(i);
+            Location loc = spawnManager.getLocations().get(i);
+
+            player.teleport(loc);
+            player.sendTitle(CC.translate(plugin.getMessagesFile().getString("deathmatch.title")), CC.translate(plugin.getMessagesFile().getString("deathmatch.subtitle")));
+        }
+
+
+
+
+    }
 }

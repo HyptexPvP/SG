@@ -1,13 +1,13 @@
-package me.hyptex.sg.game;
+package me.hyptex.sg.game.task;
 
 import lombok.Getter;
 import me.hyptex.sg.SG;
+import me.hyptex.sg.game.Phase;
 import me.hyptex.sg.util.CC;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public final class LobbyScheduler {
-
+public class LobbyScheduler {
 
     private final SG plugin;
     private final int minPlayers;

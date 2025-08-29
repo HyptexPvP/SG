@@ -1,4 +1,3 @@
-name: sg
+name: SG
 version: '1.0-SNAPSHOT'
 main: me.hyptex.sg.SG
-api-version: '1.18'

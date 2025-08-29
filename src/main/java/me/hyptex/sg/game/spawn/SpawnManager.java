@@ -14,9 +14,15 @@ public class SpawnManager {
     @Getter
     private final List<Location> locations;
 
+    @Getter
+    private Location lobby;
+
     public SpawnManager(SG plugin) {
         this.plugin = plugin;
         this.locations = new ArrayList<>();
+        if(plugin.getSettingsFile().getString("lobby.spawn") != null) {
+            this.lobby = LocationSerializer.read(plugin.getSettingsFile().getString("lobby.spawn"));
+        }
 
         plugin.getSettingsFile().getStringList("game.spawn-points").forEach(s -> this.locations.add(LocationSerializer.read(s)));
     }

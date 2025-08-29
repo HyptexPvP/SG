@@ -17,9 +17,15 @@ public class WinnerTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        if (plugin.getGameHandler().getProfiles().values().stream().filter(Profile::isAlive).toList().size() <= 1 && plugin.getGameHandler().getPhase() == Phase.GAME) {
+        if (plugin.getGameHandler().getPhase() != Phase.GAME && plugin.getGameHandler().getPhase() != Phase.DEATHMATCH) return;
+
+        long alive = plugin.getGameHandler().getProfiles().values()
+                .stream().filter(Profile::isAlive).count();
+
+        if (alive <= 1) {
             plugin.getGameHandler().end();
             this.cancel();
         }
+
     }
 }

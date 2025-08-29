@@ -1,9 +1,17 @@
 game:
   auto-start: true # For testing etc... do /forcestart
-  radius: 100
   spawn-points:
     -
   items-per-chest: 6
+
+lobby:
+  spawn:
+
+border:
+  enabled: true
+  radius: 100
+  death-match-radius: 50
+  center:
 
 data:
   map: "Default"

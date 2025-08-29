@@ -3,6 +3,7 @@ package me.hyptex.sg.game.border;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import me.hyptex.sg.SG;
+import me.hyptex.sg.util.LocationSerializer;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
@@ -13,6 +14,11 @@ public class BorderManager {
 
     private final SG plugin;
     public WorldBorder border;
+
+    public void setDeathMatchBorder() {
+        if(this.border != null) startBorder(LocationSerializer.read(plugin.getSettingsFile().getString("border.center")),
+                plugin.getSettingsFile().getInt("border.death-match-radius", 50));
+    }
 
     public void startBorder(Location center, double radius) {
         World w = center.getWorld();

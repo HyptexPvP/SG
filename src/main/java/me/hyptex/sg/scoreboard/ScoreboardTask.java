@@ -20,7 +20,7 @@ public class ScoreboardTask extends BukkitRunnable {
         this.scoreboardConfig = plugin.getScoreboardFile();
         plugin.getServer().getPluginManager().registerEvents(new ScoreboardListener(), plugin);
 
-        this.runTaskTimer(plugin, 2L, 20L);
+        this.runTaskLaterAsynchronously(plugin, 2L);
     }
 
     @Override

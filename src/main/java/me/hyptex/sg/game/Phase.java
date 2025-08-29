@@ -4,5 +4,5 @@ public enum Phase {
     IDLING,
     STARTING,
     GAME,
-    DONE
+    DEATHMATCH, DONE
 }

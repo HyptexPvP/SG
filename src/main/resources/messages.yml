@@ -1,5 +1,7 @@
 death:
   player-killed: "&a%player% &dwas killed by &c%killer%&7."
+  fell: "&a%player% &dfell to their death."
+  burned: "&a%player% &dburned to death."
   player-died: "&a%player% died."
   death-title: "&c&lYou Died!"
   death-subtitle: "&aYou are now a spectator."

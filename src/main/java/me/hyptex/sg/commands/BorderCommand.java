@@ -7,6 +7,7 @@ import co.aikar.commands.annotation.Name;
 import co.aikar.commands.annotation.Subcommand;
 import lombok.RequiredArgsConstructor;
 import me.hyptex.sg.SG;
+import me.hyptex.sg.util.LocationSerializer;
 import org.bukkit.entity.Player;
 
 @RequiredArgsConstructor
@@ -19,7 +20,20 @@ public class BorderCommand extends BaseCommand {
     @Subcommand("create")
     public void createBorder(Player player, @Name("radius") int radius) {
         plugin.getGameHandler().getBorderManager().startBorder(player.getLocation(), radius);
+        plugin.getSettingsFile().set("border.radius", radius);
+        plugin.getSettingsFile().set("border.center", LocationSerializer.write(player.getLocation()));
+        plugin.getSettingsFile().save();
+
         player.sendMessage("Created a border with radius " + radius);
+    }
+
+    @Subcommand("deathmatchradius")
+    public void createDeathmatchRadius(Player player, @Name("radius") int radius) {
+        plugin.getGameHandler().getBorderManager().startBorder(player.getLocation(), radius);
+        plugin.getSettingsFile().set("border.death-match-radius", radius);
+        plugin.getSettingsFile().save();
+
+        player.sendMessage("Set deathmatch radius to" + radius);
     }
 
     @Subcommand("delete")

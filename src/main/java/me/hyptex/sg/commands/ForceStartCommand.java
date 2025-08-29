@@ -19,7 +19,7 @@ public class ForceStartCommand extends BaseCommand {
             return;
         }
 
-        if(plugin.getGameHandler().getPhase() != Phase.GAME) {
+        if(plugin.getGameHandler().getPhase() == Phase.GAME || plugin.getGameHandler().getPhase() == Phase.DEATHMATCH) {
             player.sendMessage("Game is already in progress.");
             return;
         }

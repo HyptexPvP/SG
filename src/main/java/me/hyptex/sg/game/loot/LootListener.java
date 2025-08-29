@@ -11,6 +11,7 @@ import org.bukkit.block.DoubleChest;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 
@@ -22,7 +23,13 @@ public class LootListener implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
-        if (plugin.getGameHandler().getPhase() != Phase.GAME) {
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+
+        Block b = event.getClickedBlock();
+
+        if (!(b.getState() instanceof Chest c)) return;
+
+        if (plugin.getGameHandler().getPhase() != Phase.GAME && plugin.getGameHandler().getPhase() != Phase.DEATHMATCH) {
             return;
         }
 
@@ -30,11 +37,7 @@ public class LootListener implements Listener {
             event.setCancelled(true);
             return;
         }
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
 
-        Block b = event.getClickedBlock();
-
-        if (!(b.getState() instanceof Chest c)) return;
         event.setCancelled(true);
 
         Inventory inventory = c.getInventory();
@@ -42,6 +45,9 @@ public class LootListener implements Listener {
                 : c.getLocation();
         Inventory loot = plugin.getGameHandler().getLootManager().getOrCreate(loc, inventory.getSize());
 
+
         event.getPlayer().openInventory(loot);
     }
+
+
 }

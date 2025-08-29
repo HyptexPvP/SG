@@ -4,6 +4,7 @@ import co.aikar.commands.PaperCommandManager;
 import lombok.Getter;
 import me.hyptex.sg.commands.BorderCommand;
 import me.hyptex.sg.commands.ForceStartCommand;
+import me.hyptex.sg.commands.SpawnCommand;
 import me.hyptex.sg.commands.SpawnPointsCommand;
 import me.hyptex.sg.game.GameHandler;
 import me.hyptex.sg.util.ConfigFile;
@@ -28,6 +29,7 @@ public final class SG extends JavaPlugin {
         manager.registerCommand(new SpawnPointsCommand(this));
         manager.registerCommand(new ForceStartCommand(this));
         manager.registerCommand(new BorderCommand(this));
+        manager.registerCommand(new SpawnCommand(this));
 
 
     }
