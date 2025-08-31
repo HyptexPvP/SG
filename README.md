@@ -1,0 +1,2 @@
+# SG
+Simple SG Plugin
